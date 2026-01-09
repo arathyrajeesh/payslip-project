@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Payslip</title>
+    <title>Employee Payslip</title>
 </head>
 <body>
 
@@ -17,7 +17,8 @@
 <p>Basic Salary: ₹{{ employee.basic_salary }}</p>
 <p>HRA: ₹{{ salary.hra }}</p>
 <p>DA: ₹{{ salary.da }}</p>
-<p>Allowance: ₹{{ salary.allowance }}</p>
+<p>Allowances: ₹{{ salary.allowances }}</p>
+
 <p><strong>Gross Salary:</strong> ₹{{ gross_salary }}</p>
 
 <hr>
@@ -25,7 +26,7 @@
 <p>Deductions: ₹{{ salary.deductions }}</p>
 <p>Leaves Taken: {{ salary.leaves_taken }}</p>
 
-<h3>Net Pay: ₹{{ net_salary }}</h3>
+<h3>Net Payable Salary: ₹{{ net_salary }}</h3>
 
 <button onclick="window.print()">Print Payslip</button>
 

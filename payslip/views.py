@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Employee,Salary
-from .forms import EmployeeForm
+from .forms import EmployeeForm,SalaryForm
 
 # View Employees
 def employee_list(request):
@@ -39,7 +39,18 @@ def employee_delete(request, id):
 
 def payslip_view(request, emp_id):
     employee = get_object_or_404(Employee, emp_id=emp_id)
-    salary = get_object_or_404(Salary, employee=employee)
+
+    # Auto-create salary if not exists
+    salary, created = Salary.objects.get_or_create(
+        employee=employee,
+        defaults={
+            'hra': 0,
+            'da': 0,
+            'allowances': 0,
+            'deductions': 0,
+            'leaves_taken': 0,
+        }
+    )
 
     context = {
         'employee': employee,
@@ -48,3 +59,22 @@ def payslip_view(request, emp_id):
         'net_salary': salary.net_salary(),
     }
     return render(request, 'payslip.html', context)
+
+
+def salary_add_update(request, emp_id):
+    employee = get_object_or_404(Employee, emp_id=emp_id)
+
+    salary, created = Salary.objects.get_or_create(employee=employee)
+
+    if request.method == 'POST':
+        form = SalaryForm(request.POST, instance=salary)
+        if form.is_valid():
+            form.save()
+            return redirect('payslip', emp_id=employee.emp_id)
+    else:
+        form = SalaryForm(instance=salary)
+
+    return render(request, 'salary_form.html', {
+        'form': form,
+        'employee': employee
+    })

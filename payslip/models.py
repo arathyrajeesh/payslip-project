@@ -12,10 +12,10 @@ class Employee(models.Model):
 
 class Salary(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
-    hra = models.DecimalField(max_digits=10, decimal_places=2)
-    da = models.DecimalField(max_digits=10, decimal_places=2)
-    allowances = models.DecimalField(max_digits=10, decimal_places=2)
-    deductions = models.DecimalField(max_digits=10, decimal_places=2)
+    hra = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    da = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    allowances = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    deductions = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     leaves_taken = models.IntegerField(default=0)
 
     def gross_salary(self):

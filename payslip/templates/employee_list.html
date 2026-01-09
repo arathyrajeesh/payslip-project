@@ -25,8 +25,11 @@
         <td>₹{{ emp.basic_salary }}</td>
         <td>
             <a href="{% url 'employee_update' emp.id %}">Edit</a> |
-            <a href="{% url 'employee_delete' emp.id %}">Delete</a>
+            <a href="{% url 'employee_delete' emp.id %}">Delete</a> |
+            <a href="{% url 'salary_add' emp.emp_id %}">Add Salary</a> |
+            <a href="{% url 'payslip' emp.emp_id %}">View Payslip</a>
         </td>
+
     </tr>
     {% endfor %}
 </table>
