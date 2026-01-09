@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+</head>
+<body>
+
+<h2>Employee Records</h2>
+<a href="{% url 'employee_create' %}">Add Employee</a>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Basic Salary</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.emp_id }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.designation }}</td>
+        <td>₹{{ emp.basic_salary }}</td>
+        <td>
+            <a href="{% url 'employee_update' emp.id %}">Edit</a> |
+            <a href="{% url 'employee_delete' emp.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

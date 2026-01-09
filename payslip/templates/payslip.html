@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payslip</title>
+</head>
+<body>
+
+<h2>Employee Payslip</h2>
+
+<p><strong>Employee ID:</strong> {{ employee.emp_id }}</p>
+<p><strong>Name:</strong> {{ employee.name }}</p>
+<p><strong>Designation:</strong> {{ employee.designation }}</p>
+
+<hr>
+
+<h3>Salary Breakdown</h3>
+<p>Basic Salary: ₹{{ employee.basic_salary }}</p>
+<p>HRA: ₹{{ salary.hra }}</p>
+<p>DA: ₹{{ salary.da }}</p>
+<p>Allowance: ₹{{ salary.allowance }}</p>
+<p><strong>Gross Salary:</strong> ₹{{ gross_salary }}</p>
+
+<hr>
+
+<p>Deductions: ₹{{ salary.deductions }}</p>
+<p>Leaves Taken: {{ salary.leaves_taken }}</p>
+
+<h3>Net Pay: ₹{{ net_salary }}</h3>
+
+<button onclick="window.print()">Print Payslip</button>
+
+</body>
+</html>
