@@ -4,7 +4,7 @@ class Employee(models.Model):
     emp_id = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
-    basic_salary = models.FloatField()
+    basic_salary = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.name
@@ -20,6 +20,8 @@ class Salary(models.Model):
 
     def gross_salary(self):
         return self.employee.basic_salary + self.hra + self.da + self.allowances
-
+    def total_deductions(self):
+        # Currently just returns the field, but allows for expansion
+        return self.deductions
     def net_salary(self):
         return self.gross_salary() - self.deductions
