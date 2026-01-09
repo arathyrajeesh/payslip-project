@@ -21,7 +21,6 @@ class Salary(models.Model):
     def gross_salary(self):
         return self.employee.basic_salary + self.hra + self.da + self.allowances
     def total_deductions(self):
-        # Currently just returns the field, but allows for expansion
         return self.deductions
     def net_salary(self):
         return self.gross_salary() - self.deductions

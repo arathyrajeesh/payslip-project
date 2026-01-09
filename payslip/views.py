@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Employee,Salary
 from .forms import EmployeeForm,SalaryForm
 
-# View Employees
 def employee_list(request):
     employees = Employee.objects.all()
     return render(request, 'employee_list.html', {'employees': employees})
 
 
-# Create Employee
 def employee_create(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -20,7 +18,6 @@ def employee_create(request):
     return render(request, 'employee_form.html', {'form': form})
 
 
-# Update Employee
 def employee_update(request, id):
     employee = get_object_or_404(Employee, id=id)
     form = EmployeeForm(request.POST or None, instance=employee)
@@ -30,7 +27,6 @@ def employee_update(request, id):
     return render(request, 'employee_form.html', {'form': form})
 
 
-# Delete Employee
 def employee_delete(request, id):
     employee = get_object_or_404(Employee, id=id)
     employee.delete()
@@ -40,7 +36,6 @@ def employee_delete(request, id):
 def payslip_view(request, emp_id):
     employee = get_object_or_404(Employee, emp_id=emp_id)
 
-    # Auto-create salary if not exists
     salary, created = Salary.objects.get_or_create(
         employee=employee,
         defaults={

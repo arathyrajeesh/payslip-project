@@ -1,34 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Payslip</title>
+    <title>Payslip</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<h2>Employee Payslip</h2>
+<div class="container payslip-box">
+    <a href="{% url 'employee_list' %}">Back</a>
 
-<p><strong>Employee ID:</strong> {{ employee.emp_id }}</p>
-<p><strong>Name:</strong> {{ employee.name }}</p>
-<p><strong>Designation:</strong> {{ employee.designation }}</p>
+    <h2>Employee Payslip</h2>
 
-<hr>
+    <p><strong>ID:</strong> {{ employee.emp_id }}</p>
+    <p><strong>Name:</strong> {{ employee.name }}</p>
+    <p><strong>Designation:</strong> {{ employee.designation }}</p>
 
-<h3>Salary Breakdown</h3>
-<p>Basic Salary: ₹{{ employee.basic_salary }}</p>
-<p>HRA: ₹{{ salary.hra }}</p>
-<p>DA: ₹{{ salary.da }}</p>
-<p>Allowances: ₹{{ salary.allowances }}</p>
+    <h3>Salary Details</h3>
+    <p>Basic Salary: ₹{{ employee.basic_salary }}</p>
+    <p>HRA: ₹{{ salary.hra }}</p>
+    <p>DA: ₹{{ salary.da }}</p>
+    <p>Allowances: ₹{{ salary.allowances }}</p>
 
-<p><strong>Gross Salary:</strong> ₹{{ gross_salary }}</p>
+    <p><strong>Gross Salary:</strong> ₹{{ gross_salary }}</p>
 
-<hr>
+    <h3>Deductions</h3>
+    <p>Deductions: ₹{{ salary.deductions }}</p>
+    <p>Leaves Taken: {{ salary.leaves_taken }}</p>
 
-<p><strong>Total Deductions:</strong> ₹{{ salary.total_deductions }}</p>
-<p>Leaves Taken: {{ salary.leaves_taken }}</p>
+    <h3>Net Payable: ₹{{ net_salary }}</h3>
 
-<h3>Net Payable Salary: ₹{{ net_salary }}</h3>
-
-<button onclick="window.print()">Print Payslip</button>
+    <div class="print-btn">
+        <button class="btn btn-primary" onclick="window.print()"> Print Payslip</button>
+    </div>
+</div>
 
 </body>
 </html>

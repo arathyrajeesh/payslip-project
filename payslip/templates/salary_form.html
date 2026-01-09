@@ -1,23 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Salary</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-<h2>Salary Details – {{ employee.name }}</h2>
+<div class="container">
+    <h2>Salary – {{ employee.name }}</h2>
 
-<p><strong>Employee ID:</strong> {{ employee.emp_id }}</p>
-<p><strong>Designation:</strong> {{ employee.designation }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success" type="submit">Save Salary</button>
+    </form>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Salary</button>
-</form>
-
-<br>
-<a href="{% url 'employee_list' %}">Back to Employee List</a>
+    <br>
+    <a href="{% url 'employee_list' %}">Back</a>
+</div>
 
 </body>
 </html>
