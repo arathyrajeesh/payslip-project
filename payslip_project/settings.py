@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-ptt(ocg24g5xm5ko*dy^(@3$-5&!d#y5+mg6aw(i-*x0p)k#%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,10 +74,20 @@ WSGI_APPLICATION = 'payslip_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'payslip_db',
+        'USER': 'payslip_user',
+        'PASSWORD': 'password123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -121,6 +132,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'payslip/static',
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
